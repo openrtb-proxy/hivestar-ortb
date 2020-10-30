@@ -1,0 +1,114 @@
+spring:
+  application:
+    name: starproxy
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: DEFINE_OR_INJECT
+    username: DEFINE_OR_INJECT
+    password: DEFINE_OR_INJECT
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: false
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  resources:
+    add-mappings: false
+  task:
+    scheduling:
+      pool:
+        size: 10
+
+server:
+  servlet:
+    context-path: /
+
+
+hivestack:
+  enabled: false
+  baseurl: https://apps.hivestack.com/
+  schedule-vast-path: nirvana/api/v1/units/{uuid}/schedulevast
+  upcoming-creative-url-list: /nirvana/api/v1/units/{uuid}/creatives
+  errors:
+    nothing-scheduled: "Nothing Scheduled."
+
+vastserver:
+  baseurl: https://localhost
+  cached-document-path: /cachedDocuments/
+
+reach:
+  baseurl: https://servssp.broadsign.com/
+  oauth2-token-path: auth/oauth2/token/
+  create-creative-path: api/entity_creatives/
+  log-nurl: /win?auction={AUCTION_ID}&bid={AUCTION_BID_ID}&adid={AUCTION_AD_ID}
+  log-lurl: /loss?auction={AUCTION_ID}&bid={AUCTION_BID_ID}&loss={AUCTION_LOSS}&adid={AUCTION_AD_ID}
+  nurl: /win?auction=%24%7BAUCTION_ID%7D&bid=%24%7BAUCTION_BID_ID%7D&adid=%24%7BAUCTION_AD_ID%7D
+  lurl: /loss?auction=%24%7BAUCTION_ID%7D&bid=%24%7BAUCTION_BID_ID%7D&loss=%24%7BAUCTION_LOSS%7D&adid=%24%7BAUCTION_AD_ID%7D
+  vistar:
+    username: DEFINE_OR_INJECT # API user for reach creatives
+    password: DEFINE_OR_INJECT # API user for reach creatives
+  vistar_french:
+    username: DEFINE_OR_INJECT # API user for reach creatives
+    password: DEFINE_OR_INJECT # API user for reach creatives
+  hivestack:
+    username: DEFINE_OR_INJECT # API user for reach creatives
+    password: DEFINE_OR_INJECT # API user for reach creatives
+
+vistar:
+  enabled: false
+  networkid: 0 # DEFINE_OR_INJECT
+  apikey: 0 # DEFINE_OR_INJECT
+  staging:
+    baseurl: DEFINE_OR_INJECT
+    ad-serving-path: api/v1/get_ad/json
+    creative-caching: api/v1/get_asset/json
+  production:
+    baseurl: DEFINE_OR_INJECT
+  french:
+    enabled: false
+    networkid: DEFINE_OR_INJECT
+    apikey: DEFINE_OR_INJECT
+
+creative:
+  hivestack:
+    name: "Hivestack Advertiser"
+    advertiser:
+      id: 0  # DEFINE_OR_INJECT
+  vistar:
+    name: "Vistar Advertiser"
+    advertiser:
+      id: 0 # DEFINE_OR_INJECT
+  vistar_french:
+    name: "Vistar French Advertiser"
+    advertiser:
+      id: 0 # DEFINE_OR_INJECT
+  publisher:
+    id: 0 # DEFINE_OR_INJECT
+    name: DEFINE_OR_INJECT
+  iab_category:
+    id: 24
+
+seatbid:
+  bid:
+    price: 0.01
+
+thumbor:
+  enabled: false
+  server: DEFINE_OR_INJECT
+  key: DEFINE_OR_INJECT
+
+#enforce safe defaults, health is needed for docker healthcheck
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health, metrics, stats
+  endpoint:
+    health:
+      enabled: true
+    metrics:
+      enabled: false
+  metrics:
+    export:
+      logging:
+        enabled: false
