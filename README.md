@@ -1,6 +1,6 @@
-# StarProxy
+# Hivestar-ORTB
 
-Multi-vendor DSP Proxy for Broadsign Reach
+OpenRTB adapter for Hivestack and Vistar.  This adapter receives an OpenRTB bid request, translates it into Hivestack / Vistar ad requests, receives the responses from those SSPs and translates the responses back to an OpenRTB bid response.
 
 ## Building
 
