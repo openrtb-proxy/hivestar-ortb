@@ -1,6 +1,10 @@
 # Hivestar-ORTB
 
-OpenRTB adapter for Hivestack and Vistar.  This adapter receives an OpenRTB bid request, translates it into Hivestack / Vistar ad requests, receives the responses from those SSPs and translates the responses back to an OpenRTB bid response.
+OpenRTB adapter for Hivestack and Vistar SSPs.  This adapter receives an OpenRTB bid request, translates it into Hivestack / Vistar ad requests, receives the responses from those SSPs and translates the responses back to an OpenRTB bid response.
+
+## Integration with Broadsign Reach
+
+In order to facilitate integration of this adapter into Broadsign Reach, hivestar-ortb will automatically scan for approved creatives in Hivestack and Vistar and ingest them into Reach for distribution and caching. It also implements several Reach-specific callbacks for troubleshooting such as win/loss notifications.
 
 ## Building
 
@@ -32,7 +36,7 @@ or
 
 Run with `docker run -p 8080:8080 starproxy/starproxy`
 
-Application should accept HTTP connections on specfieid port, ready for Reach to send bid requests.
+Application should accept HTTP connections on specfied port, ready to receive ortb bid requests.
 
 Paths available are `/bids/hivestack`, `/bids/vistar` and `/bids/vistar_french`.  
 Also provides `/cachedDocuments` and `/win` and `/loss` for callbacks from Reach.
